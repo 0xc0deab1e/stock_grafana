@@ -1,7 +1,7 @@
 services:
   vscode:
     image: linuxserver/code-server:latest
-    container_name: vscode_jh
+    container_name: jh_vscode
     environment:
       - PUID=1000
       - PGID=1000

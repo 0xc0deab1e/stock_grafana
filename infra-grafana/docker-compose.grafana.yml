@@ -1,7 +1,7 @@
 services:
   grafana:
     image: grafana/grafana:latest
-    container_name: grafana_jh
+    container_name: jh_grafana
     ports:
       - "${GRAFANA_PORT}:3000"
     volumes:

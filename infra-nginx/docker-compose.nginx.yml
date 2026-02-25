@@ -1,7 +1,7 @@
 services:
   nginx:
     image: nginx:latest
-    container_name: nginx_jh_8081
+    container_name: jh_nginx_8081
     ports:
       - "${NGINX_PORT}:80"
     volumes:

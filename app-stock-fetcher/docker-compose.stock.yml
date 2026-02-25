@@ -1,7 +1,7 @@
 services:
   stock-fetcher:
     build: .
-    container_name: stock_fetcher_jh
+    container_name: jh_stock_fetcher
     environment:
       - INFLUXDB_URL=http://influxdb:8086
       - INFLUXDB_TOKEN=${INFLUXDB_TOKEN}

@@ -1,7 +1,7 @@
 services:
   influxdb:
     image: influxdb:2.7
-    container_name: influxdb_jh
+    container_name: jh_influxdb
     ports:
       - "${INFLUXDB_PORT}:8086"
     environment:
