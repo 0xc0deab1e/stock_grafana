@@ -107,10 +107,25 @@ function up() {
 }
 
 function clean() {
+    local clean_data=false
+    if [[ "$1" == "--data" || "$1" == "-d" || "$1" == "--all" || "$1" == "--a" ]]; then
+        clean_data=true
+    fi
+
     echo "Cleaning up..."
     docker compose down -v
     rm -f .env
-    echo "Note: $DATA_PATH was NOT deleted for safety."
+
+    if [ "$clean_data" = true ]; then
+        echo "Cleaning persistent data in $DATA_PATH..."
+        sudo rm -rf "$DATA_PATH"/influxdb/data/*
+        sudo rm -rf "$DATA_PATH"/influxdb/config/*
+        sudo rm -rf "$DATA_PATH"/grafana/data/*
+        echo "InfluxDB, Grafana data cleared."
+    else
+        echo "Note: Persistent data in $DATA_PATH was NOT deleted."
+        echo "If you want to remove data as well, run: $0 clean --data"
+    fi
 }
 
 # Command dispatcher
@@ -123,10 +138,11 @@ case "$1" in
         up "$@"
         ;;
     clean)
-        clean
+        shift
+        clean "$@"
         ;;
     *)
-        echo "Usage: $0 {init|up|clean}"
+        echo "Usage: $0 {init|up|clean [--data]}"
         exit 1
         ;;
 esac
