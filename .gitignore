@@ -1,0 +1,33 @@
+# Secrets
+.env
+*.token
+*.password
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv
+venv/
+ENV/
+
+# Docker / Data
+.data/
+jh/
+data/
+*/data/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project Specific
+infra-nginx/conf/*.bak

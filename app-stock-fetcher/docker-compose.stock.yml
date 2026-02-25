@@ -1,0 +1,17 @@
+services:
+  stock-fetcher:
+    build: .
+    container_name: stock_fetcher_jh
+    environment:
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_TOKEN=${INFLUXDB_TOKEN}
+      - INFLUXDB_ORG=${INFLUXDB_ORG}
+      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
+      - STOCK_TICKERS=${STOCK_TICKERS:-005930.KS}
+      - FETCH_INTERVAL=${FETCH_INTERVAL:-60}
+      - PYTHONUNBUFFERED=1
+    networks:
+      - jh-network
+    depends_on:
+      - influxdb
+    restart: always

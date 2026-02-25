@@ -1,0 +1,18 @@
+services:
+  vscode:
+    image: linuxserver/code-server:latest
+    container_name: vscode_jh
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Seoul
+      - PASSWORD=${VSCODE_PASSWORD}
+      - SUDO_PASSWORD=true
+    volumes:
+      - ${DATA_PATH}/vscode:/config
+      - ../:/config/workspace
+    ports:
+      - "${VSCODE_PORT}:8443"
+    networks:
+      - jh-network
+    restart: always

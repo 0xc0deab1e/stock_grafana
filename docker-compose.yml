@@ -1,0 +1,11 @@
+include:
+  - infra-influxdb/docker-compose.influxdb.yml
+  - infra-grafana/docker-compose.grafana.yml
+  - infra-vscode/docker-compose.vscode.yml
+  - infra-nginx/docker-compose.nginx.yml
+  - app-stock-fetcher/docker-compose.stock.yml
+
+networks:
+  jh-network:
+    name: jh-network
+    driver: bridge
