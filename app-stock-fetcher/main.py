@@ -2,12 +2,13 @@ import time
 import threading
 from datetime import datetime
 import requests
-from fastapi import FastAPI, Request
+
+from fastapi import FastAPI, Request, BackgroundTasks
 from fastapi.responses import HTMLResponse
 import uvicorn
 
 from config import config
-from src.fetcher import StockFetcher
+from src.fetcher import StockFetcher, fetch_and_write_historical
 from src.storage import get_storage_backend
 from src.ticker_manager import TickerManager
 
@@ -160,13 +161,15 @@ def get_tickers():
     return ticker_manager.get_tickers()
 
 @app.post("/tickers")
-async def add_ticker(request: Request):
+async def add_ticker(request: Request, background_tasks: BackgroundTasks):
     data = await request.json()
     ticker = data.get("ticker")
     name = data.get("name", "")
+    years = data.get("years", 5)
     if ticker:
         ticker_manager.add_ticker(ticker, name)
-        return {"status": "success", "ticker": ticker, "name": name}
+        background_tasks.add_task(fetch_and_write_historical, ticker, years)
+        return {"status": "success", "ticker": ticker, "name": name, "years": years}
     return {"status": "error"}
 
 @app.delete("/tickers/{ticker}")
