@@ -10,8 +10,14 @@ services:
       - STOCK_TICKERS=${STOCK_TICKERS:-005930.KS}
       - FETCH_INTERVAL=${FETCH_INTERVAL:-60}
       - PYTHONUNBUFFERED=1
+    ports:
+      - "28001:28001"
+    volumes:
+      - ./data:/app/data
     networks:
       - jh-network
-    depends_on:
-      - influxdb
     restart: always
+
+networks:
+  jh-network:
+    external: true

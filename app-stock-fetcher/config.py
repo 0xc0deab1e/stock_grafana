@@ -15,7 +15,7 @@ class Config:
     DATA_DIR = os.getenv("DATA_DIR", "./data")
 
     # Stock settings
-    STOCK_TICKERS = os.getenv("STOCK_TICKERS", "005930.KS").split(",")
+    DEFAULT_STOCK_TICKERS = os.getenv("STOCK_TICKERS", "005930.KS").split(",")
     FETCH_INTERVAL = int(os.getenv("FETCH_INTERVAL", "60"))
 
 config = Config()
