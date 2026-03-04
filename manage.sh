@@ -118,9 +118,8 @@ function clean() {
 
     if [ "$clean_data" = true ]; then
         echo "Cleaning persistent data in $DATA_PATH..."
-        sudo rm -rf "$DATA_PATH"/influxdb/data/*
-        sudo rm -rf "$DATA_PATH"/influxdb/config/*
-        sudo rm -rf "$DATA_PATH"/grafana/data/*
+        sudo rm -rf "$DATA_PATH"/influxdb
+        sudo rm -rf "$DATA_PATH"/grafana
         echo "InfluxDB, Grafana data cleared."
     else
         echo "Note: Persistent data in $DATA_PATH was NOT deleted."
