@@ -17,7 +17,3 @@ services:
     networks:
       - jh-network
     restart: always
-
-networks:
-  jh-network:
-    external: true
