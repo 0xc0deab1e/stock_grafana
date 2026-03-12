@@ -4,6 +4,7 @@ include:
   - infra-vscode/docker-compose.vscode.yml
   - infra-nginx/docker-compose.nginx.yml
   - app-stock-fetcher/docker-compose.stock.yml
+  - infra-jenkins/docker-compose.jenkins.yml
 
 networks:
   jh-network:

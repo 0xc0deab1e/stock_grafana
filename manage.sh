@@ -103,6 +103,7 @@ function up() {
     echo "VS Code         : http://localhost:${VSCODE_PORT:-8443}"
     echo "Grafana         : http://localhost:${GRAFANA_PORT:-3001}"
     echo "InfluxDB        : http://localhost:${INFLUXDB_PORT:-8086}"
+    echo "Jenkins         : http://localhost:8080"
     echo "------------------------------------------------"
 }
 
