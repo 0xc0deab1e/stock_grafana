@@ -33,6 +33,8 @@ class InfluxDBStorage(StorageBackend):
         try:
             # yfinance occasionally returns rows with NaN values
             data = data.dropna(subset=['Open', 'High', 'Low', 'Close'])
+            # Fill NaN volumes with 0, as some non-US tickers might not report it consistently
+            data['Volume'] = data['Volume'].fillna(0)
             
             for index, row in data.iterrows():
                 point = (

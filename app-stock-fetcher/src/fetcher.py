@@ -72,7 +72,14 @@ def fetch_and_write_historical(symbol: str, years: int = 5, chunk_years: int = 1
             client = InfluxDBClient(url=config.INFLUXDB_URL, token=config.INFLUXDB_TOKEN, org=config.INFLUXDB_ORG)
             write_api = client.write_api()
             points = []
+            # Fill NaN volumes before iterating
+            if 'Volume' in df.columns:
+                df['Volume'] = df['Volume'].fillna(0)
+                
             for ts, row in df.iterrows():
+                # skip rows where required price data is NaN
+                if pd.isna(row['Close']):
+                    continue
                 point = (
                     Point("stock_price")
                     .tag("ticker", symbol)
@@ -97,7 +104,12 @@ def fetch_and_write_historical(symbol: str, years: int = 5, chunk_years: int = 1
             client = InfluxDBClient(url=config.INFLUXDB_URL, token=config.INFLUXDB_TOKEN, org=config.INFLUXDB_ORG)
             write_api = client.write_api()
             points_1m = []
+            if 'Volume' in df_1m.columns:
+                df_1m['Volume'] = df_1m['Volume'].fillna(0)
+                
             for ts, row in df_1m.iterrows():
+                if pd.isna(row['Close']):
+                    continue
                 point = (
                     Point("stock_price")
                     .tag("ticker", symbol)
