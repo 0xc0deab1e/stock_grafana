@@ -37,6 +37,7 @@ kind: Ingress
 metadata:
   name: grafana-ingress
 spec:
+  ingressClassName: nginx
   rules:
   - host: grafana.192.168.50.202.nip.io
     http:
