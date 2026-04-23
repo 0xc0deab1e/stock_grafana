@@ -15,9 +15,12 @@ spec:
     spec:
       containers:
       - name: influxdb
-        image: influxdb:1.8  # 로그를 보니 1.8 버전을 쓰시는 것 같아 맞췄습니다
+        image: influxdb:1.8
         ports:
         - containerPort: 8086
+        env:
+        - name: INFLUXDB_HTTP_FLUX_ENABLED
+          value: "true"
 ---
 apiVersion: v1
 kind: Service
