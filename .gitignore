@@ -31,3 +31,7 @@ data/
 
 # Project Specific
 infra-nginx/conf/*.bak
+
+infra-jenkins/jenkins_home/
+infra-grafana/data/
+infra-influxdb/data/
