@@ -20,6 +20,9 @@ spec:
         image: harbor.192.168.50.202.nip.io/library/stock-fetcher:v1
         ports:
         - containerPort: 28001
+        env:
+        - name: TZ
+          value: "Asia/Seoul"
 ---
 apiVersion: v1
 kind: Service
