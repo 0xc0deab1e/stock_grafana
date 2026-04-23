@@ -31,4 +31,4 @@ spec:
     app: influxdb
   ports:
   - port: 8086
-    target_port: 8086
+    targetPort: 8086
