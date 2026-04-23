@@ -13,9 +13,10 @@ spec:
       labels:
         app: stock-fetcher
     spec:
+      imagePullSecrets:
+      - name: harbor-registry-secret
       containers:
       - name: stock-fetcher
-        # 방금 push하신 harbor 이미지 주소를 정확히 입력하세요
         image: harbor.192.168.50.202.nip.io/library/stock-fetcher:v1
         ports:
         - containerPort: 8000
